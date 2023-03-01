@@ -13,7 +13,7 @@ ENT.Contact = "lordmiraithegod@gmail.com | Lord Mirai(未来)#0039"
 
 ENT.Editable = true
 
-MirUtil = MirUtil or {}
+MSCP = MSCP or {}
 
 function ENT:SetupDataTables()
 	

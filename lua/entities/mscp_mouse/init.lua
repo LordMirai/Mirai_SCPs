@@ -4,7 +4,7 @@ AddCSLuaFile("shared.lua")
 include("shared.lua")
 
 function ENT:Initialize()
-	self:SetModel("models/props_phx/construct/metal_tubex2.mdl")
+	self:SetModel("")
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_BBOX)
@@ -13,30 +13,12 @@ function ENT:Initialize()
 	self:SetTrigger(true)
 
 	self.isSCP = true
-	self.canUse = true
 
 	local phys = self:GetPhysicsObject()
 	if self:IsValid() then self:Activate() end
 end
 
-function ENT:Think()
-	
-end
 
 function ENT:Use(ply)
-	if not self.canUse then return end
-
-end
-
-function ENT:OnTakeDamage(dmg)
-
-end
-
-
-hook.Add("ShouldCollide", "", function(scp, ent)
-	
-end)
-
-function ENT:StartTouch(otherEnt)
-
+	self:EmitSound("click.wav", 100, 1, 1)
 end

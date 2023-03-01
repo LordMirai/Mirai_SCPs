@@ -13,6 +13,7 @@ function ENT:Initialize()
 	self:SetTrigger(true)
 
 	self.isSCP = true
+	self.canUse = true
 
 	local phys = self:GetPhysicsObject()
 	if self:IsValid() then self:Activate() end
@@ -20,8 +21,21 @@ end
 
 
 function ENT:Use(ply)
-	ply:PrintMessage(HUD_PRINTTALK, "Card reads: 'Letter to mom'")
+	if not self.canUse then return end
+	
+	MSCP.Message(ply, "Card reads: 'Letter to mom'")
 	self:EmitSound("loveumom.wav", 50, math.Rand(90,110))
+	if MSCP.chance(10) then -- 10% chance to get the message
+		MSCP.Message(ply, "You feel loved <3", Color(255,90,200))
+	end
+
+	self.canUse = false
+
+	timer.Simple(3, function()
+		if self:IsValid() then
+			self.canUse = true
+		end
+	end)
 end
 
 function ENT:OnTakeDamage(dmg)

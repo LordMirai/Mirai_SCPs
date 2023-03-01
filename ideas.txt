@@ -6,6 +6,7 @@
 6. Button that lights up when pressed and plays jazz
 7. Card that says "love u mom"    - sound and better model needed
 8. Cheese that is annoying and screams on takin dmg
-9. Computer mouse that clicks
+9. Computer mouse that clicks  - sound and model needed
 10. Crowbar that makes people think player is freeman (literally make them say "doctor freeman" when in range)
-11. Book of Call of Cthulhu that makes you hear whispering when alone and smack you and the nearest player if people around. also make a message "you dropped the rock as it's useless."
+11. Book of Call of Cthulhu that makes you hear whispering when alone and smack you and the nearest player if people around.
+Also make a message "you dropped the rock as it's useless."

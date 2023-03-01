@@ -1,13 +1,13 @@
 ENT.Type = "anim"
 ENT.Base = "base_anim"
 
-ENT.PrintName = "Mom card"
+ENT.PrintName = "Mouse"
 ENT.Category = "Mirai's SCPs"
 ENT.Spawnable = true
 ENT.AdminOnly = true
 
 ENT.Author = "Lord Mirai　(未来)"
-ENT.Purpose = ""
+ENT.Purpose = "Does stock sound"
 ENT.Instructions = ""
 ENT.Contact = "lordmiraithegod@gmail.com | Lord Mirai(未来)#0039"
 
