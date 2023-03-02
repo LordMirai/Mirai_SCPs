@@ -1,0 +1,7 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/artoftf2book/pages"
+	"$bumpmap" "models/artoftf2book/pages_normale"
+        "$surfaceprop" "paper"
+	"$model" 1
+}

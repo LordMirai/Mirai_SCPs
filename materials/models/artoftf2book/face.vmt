@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/artoftf2book/face"
+        "$surfaceprop" "paper"
+	"$model" 1
+}

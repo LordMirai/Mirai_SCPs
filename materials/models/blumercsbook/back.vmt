@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/blumercsbook/back"
+        "$surfaceprop" "paper"
+	"$model" 1
+}

@@ -1,0 +1,6 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/redmercsbook/face"
+        "$surfaceprop" "paper"
+	"$model" 1
+}
