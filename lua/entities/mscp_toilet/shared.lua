@@ -15,10 +15,6 @@ ENT.Editable = true
 
 MSCP = MSCP or {}
 
-function ENT:SetupDataTables()
-	
-end
-
 MSCP.ToiletMessages = {
 	"Oh my goodness, that's hilarious!",
 	"I can't stop laughing, that was so funny!",

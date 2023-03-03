@@ -16,23 +16,8 @@ function ENT:Initialize()
 
 	local phys = self:GetPhysicsObject()
 	if self:IsValid() then self:Activate() end
+	if phys:IsValid() then phys:Wake() end
 end
-
-function ENT:Think()
-	
-end
-
-function ENT:Use(ply)
-end
-
-function ENT:OnTakeDamage(dmg)
-
-end
-
-
-hook.Add("ShouldCollide", "", function(scp, ent)
-	
-end)
 
 function ENT:StartTouch(otherEnt)
 	if otherEnt:IsValid() then

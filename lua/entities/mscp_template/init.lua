@@ -17,6 +17,7 @@ function ENT:Initialize()
 
 	local phys = self:GetPhysicsObject()
 	if self:IsValid() then self:Activate() end
+	if phys:IsValid() then phys:Wake() end
 end
 
 function ENT:Think()

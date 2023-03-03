@@ -19,6 +19,7 @@ function ENT:Initialize()
 
 	local phys = self:GetPhysicsObject()
 	if self:IsValid() then self:Activate() end
+	if phys:IsValid() then phys:Wake() end
 
 	self.scannedPlayers = {}
 end
@@ -71,6 +72,11 @@ function ENT:readAlone(ply)
 	local randMessage = MSCP.CtulhuLines[math.random(#MSCP.CtulhuLines)]
 	MSCP.Message(ply,"You read a passage from the book:\n"..randMessage)
 	-- ominous whisper sound
+	timer.Simple(math.Rand(0.2,1.2), function()
+		if ply:IsValid() and ply:Alive() then
+			MSCP.Message(ply, "Wha- What's with this rock? Guess I don't need it. \n*drops it*")
+		end
+	end)
 end
 
 

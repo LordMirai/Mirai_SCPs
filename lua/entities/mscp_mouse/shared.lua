@@ -8,7 +8,7 @@ ENT.AdminOnly = true
 
 ENT.Author = "Lord Mirai　(未来)"
 ENT.Purpose = "Does stock sound"
-ENT.Instructions = ""
+ENT.Instructions = "*click*"
 ENT.Contact = "lordmiraithegod@gmail.com | Lord Mirai(未来)#0039"
 
 ENT.Editable = true
