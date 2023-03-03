@@ -1,10 +1,6 @@
 
-
-hook.Run("PlayerInitialSpawn","InitFreeman",function(ply)
-    ply.saidFreeman = false
-end)
-
 function MSCP.Message(ply,msg,col)
+    if not ply:IsValid() then return end
     if not ply:IsPlayer() then return end
     col = col or Color(250,250,250)
 

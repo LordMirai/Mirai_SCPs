@@ -34,7 +34,13 @@ end
 local freemanMessages = {
     "Doctor Freeman",
     "Freeman",
-    "Free man Freeman",
-    "Doctor Freeman, I presume",
+    "Free my man Freeman",
+    "Doctor Freeman I presume?",
     "Freeeeeeeeeeeeeeeeeeeeeeeeeemaaaaaaaaaaaaaaaaaaaan"
 }
+
+if SERVER then
+    hook.Add("PlayerInitialSpawn","InitFreeman",function(ply)
+        ply.saidFreeman = false
+    end)
+end

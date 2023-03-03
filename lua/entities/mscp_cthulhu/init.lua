@@ -4,7 +4,7 @@ AddCSLuaFile("shared.lua")
 include("shared.lua")
 
 function ENT:Initialize()
-	self:SetModel("") -- book model
+	self:SetModel("models/artoftf2book/back") -- book model
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_BBOX)
@@ -59,7 +59,7 @@ end
 
 function ENT:scan(ply)
 	if ply:IsPlayer() and ply:Alive() then
-		if self.scannedPlayers[ply] == nil then
+		if not self.scannedPlayers[ply] then
 			self.scannedPlayers[ply] = true
 			MSCP.Message(ply, "You feel a strange presence. You should read the book.", Color(100,30,30))
 			-- thaumcraft warp whisper sound
@@ -94,13 +94,13 @@ function ENT:readTogether(origin, listener)
 		end
 		if listener:Alive() then
 			listener:TakeDamage(dmg, self, self)
-			MSCP.Message(origin, "Wha- where did that come from?")
+			MSCP.Message(listener, "Wha- where did that come from?")
 		end
 	end)
 end
 
 function ENT:strikeResponse()
-	self:EmitSound("ambient/alarms/warningbell1.wav", 80, math.random(80,120))
+	self:EmitSound("ambient/alarms/warningbell1.wav", 80, math.random(80,120))  -- ominous bell sound or shriek
 	for k,v in pairs(ents.FindInSphere(self:GetPos(), 1000)) do -- AOE damage to players & NPCs around the book
 		if v:IsPlayer() or v:IsNPC() then
 			v:TakeDamage(600, self, self)
@@ -113,3 +113,9 @@ function ENT:strikeResponse()
 		MSCP.Broadcast("Call of Cthulhu as been taken back above.")
 	end
 end
+
+hook.Add("PlayerDeath","ResetCthulhu", function(ply)
+	for k,v in pairs(ents.FindByClass("mscp_ctulhu")) do
+		v.scannedPlayers[ply] = false
+	end
+end)
