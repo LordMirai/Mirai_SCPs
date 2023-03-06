@@ -1,7 +1,7 @@
 ENT.Type = "anim"
 ENT.Base = "base_anim"
 
-ENT.PrintName = "Template"
+ENT.PrintName = "Jazz Button"
 ENT.Category = "Mirai's SCPs"
 ENT.Spawnable = true
 ENT.AdminOnly = true

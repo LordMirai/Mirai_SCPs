@@ -13,6 +13,7 @@ function ENT:Initialize()
 	self:SetTrigger(true)
 
 	self.isSCP = true
+	self.doJoke = true
 
 	local phys = self:GetPhysicsObject()
 	if self:IsValid() then self:Activate() end
@@ -22,14 +23,32 @@ end
 function ENT:StartTouch(otherEnt)
 	if otherEnt:IsValid() then
 		if otherEnt:IsPlayer() or otherEnt:IsNPC() then
-			if otherEnt:IsPlayer() then
-				local msg = MSCP.ToiletMessages[math.random(#MSCP.ToiletMessages)]
-				otherEnt:Say(msg)
-			end
-
-			local path = "toilet/laugh"..math.random(1, 2)..".wav"
-
-			otherEnt:EmitSound(path, math.random(60, 100), math.random(80, 120), math.Rand(0.6,1), CHAN_AUTO)
+			self:joke(otherEnt)
 		end
 	end
+end
+
+function ENT:Use(activator, caller)
+	if activator:IsPlayer() then
+		self:joke(activator)
+	end
+end
+
+function ENT:joke(ply)
+	if not self.doJoke then return end
+	if ply:IsPlayer() then
+		local msg = MSCP.ToiletMessages[math.random(#MSCP.ToiletMessages)]
+		ply:Say(msg)
+	end
+
+	local path = "toilet/laugh"..math.random(1, 2)..".wav"
+
+	ply:EmitSound(path, math.random(60, 100), math.random(80, 120), math.Rand(0.6,1), CHAN_AUTO)
+
+	self.doJoke = false
+	timer.Simple(0.5, function()
+		if self:IsValid() then
+			self.doJoke = true
+		end
+	end)
 end

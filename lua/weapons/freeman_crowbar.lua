@@ -27,7 +27,7 @@ function MSCP.freeman(ply)
             if ply:IsValid() then
                 ply.saidFreeman = false
             end
-        )
+        end)
     end
 end
 

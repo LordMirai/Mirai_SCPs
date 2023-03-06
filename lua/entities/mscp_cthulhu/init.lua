@@ -4,7 +4,7 @@ AddCSLuaFile("shared.lua")
 include("shared.lua")
 
 function ENT:Initialize()
-	self:SetModel("models/artoftf2book/back") -- book model
+	self:SetModel("models/artoftf2book/artoftf2book.mdl") -- book model
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_BBOX)
@@ -25,7 +25,7 @@ function ENT:Initialize()
 end
 
 function ENT:Think()
-	for k, v in pairs(ents.FindInSphere(self:GetPos(), 700)) do
+	for k, v in pairs(ents.FindInSphere(self:GetPos(), 300)) do
 		self:scan(v)
 	end
 
@@ -37,9 +37,14 @@ function ENT:Use(ply)
 	if not self.canUse then return end
 	self.canUse = false
 
+	timer.Simple(3, function()
+		if not self:IsValid() then return end
+		self.canUse = true
+	end)
+
 	self:EmitSound("pagesflip.wav", 80, math.random(80,120))
 	for k,v in pairs(ents.FindInSphere(ply:GetPos(), 600)) do
-		if v:IsPlayer() then
+		if v:IsPlayer() and v != ply then
 			self:readTogether(ply, v)
 			return
 		end

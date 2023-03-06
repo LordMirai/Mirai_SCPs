@@ -4,7 +4,7 @@ function MSCP.Message(ply,msg,col)
     if not ply:IsPlayer() then return end
     col = col or Color(250,250,250)
 
-    net.Start("MSCP.Message")
+    net.Start("MSCP_Message")
     net.WriteString(msg)
     net.WriteColor(col)
     net.Send(ply)
@@ -13,7 +13,7 @@ end
 function MSCP.Broadcast(msg,col)
     col = col or Color(250,250,250)
 
-    net.Start("MSCP.Message")
+    net.Start("MSCP_Message")
     net.WriteString(msg)
     net.WriteColor(col)
     net.Broadcast()

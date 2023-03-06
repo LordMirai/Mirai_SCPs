@@ -4,7 +4,7 @@ AddCSLuaFile("shared.lua")
 include("shared.lua")
 
 function ENT:Initialize()
-	self:SetModel("models/props_phx/construct/metal_tubex2.mdl")
+	self:SetModel("models/maxofs2d/button_05.mdl")
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_BBOX)
@@ -19,7 +19,7 @@ function ENT:Initialize()
 	self.isSCP = true
 	self.canUse = true
 
-	self.jazzOn = false
+	self:stopJazz()
 
 	local phys = self:GetPhysicsObject()
 	if self:IsValid() then self:Activate() end
@@ -56,7 +56,7 @@ end
 
 function ENT:stopJazz()
 	self.jazzOn = false
-	self:SetColor(Color(0,0,0)) -- reset
+	self:SetColor(Color(100,100,100)) -- reset
 
 	if self.song then
 		self.song:Stop()
