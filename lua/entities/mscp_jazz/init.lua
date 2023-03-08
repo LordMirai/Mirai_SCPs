@@ -37,7 +37,7 @@ function ENT:Use(ply)
 	end
 
 	self.canUse = false
-	timer.Simple(3, function()
+	timer.Simple(2, function()
 		self.canUse = true
 	end)
 end
@@ -56,9 +56,21 @@ end
 
 function ENT:stopJazz()
 	self.jazzOn = false
-	self:SetColor(Color(100,100,100)) -- reset
+	self:SetColor(Color(200,200,200)) -- reset
 
 	if self.song then
 		self.song:Stop()
 	end
+end
+
+function ENT:OnRemove()
+	timer.Simple(0, function()
+		if not IsValid(self) then
+			for k,v in pairs(MSCP.activeSCPs) do
+				if v == ent then
+					table.remove(MSCP.activeSCPs, k)
+				end
+			end
+		end
+	end)
 end

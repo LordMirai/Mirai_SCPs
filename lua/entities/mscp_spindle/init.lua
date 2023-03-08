@@ -35,6 +35,20 @@ function ENT:Use(ply)
 		self.canUse = true
 	end)
 
+	if ply:Alive() then
+		if ply:Health() <= 1 then
+			MSCP.Message(ply, "I don't think you're in any condition to use this.", Color(180,0,0))
+		else
+			ply:SetHealth(math.Clamp(ply:Health() - 1, 1, ply:GetMaxHealth()))
+			MSCP.Message(ply, "*You pricked your finger*\n It doesn't hurt that bad...")
+			self:playRandSound(100, 0)
+			timer.Simple(math.random(0.4,0.8), function()
+				if ply:IsValid() then
+					MSCP.Message(ply, "...but you scream anyway.")
+				end
+			end)
+		end
+	end
 end
 
 function ENT:scan()
@@ -55,22 +69,7 @@ function ENT:scan()
 	end)
 end
 
-function ENT:scanCB(ply)
-	
-end
-
--- function ENT:OnTakeDamage(dmg)
-
--- end
-
-
--- hook.Add("ShouldCollide", "", function(scp, ent)
-	
--- end)
-
--- function ENT:StartTouch(otherEnt)
-
--- end
+function ENT:scanCB(ply)end
 
 function ENT:OnRemove()
 	timer.Simple(0, function()

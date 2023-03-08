@@ -4,7 +4,7 @@ AddCSLuaFile("shared.lua")
 include("shared.lua")
 
 function ENT:Initialize()
-	self:SetModel("models/props_phx/construct/metal_tubex2.mdl")
+	self:SetModel("")
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_BBOX)
@@ -14,17 +14,29 @@ function ENT:Initialize()
 
 	self.isSCP = true
 	self.canUse = true
-	self.useCooldown = 1
+	self.useCooldown = 0
 
-	self.scanValid = false -- set to true to enable scanning
+	self.scanValid = true -- set to true to enable scanning
 	self.scanRadius = 300
 	self.scanPeriod = 1
+
+	self.target = nil
+	self.user = nil
 
 	local phys = self:GetPhysicsObject()
 	if self:IsValid() then self:Activate() end
 	if phys:IsValid() then phys:Wake() end
 
-	self:scan()
+	timer.Simple(0.1, function()
+		self:scan()
+	end)
+
+	timer.Simple(10, function()
+		if self:IsValid() then
+			print("Head-seeking skull did not reach its target.")
+			self:Remove()
+		end
+	end)
 end
 
 function ENT:Use(ply)
@@ -35,6 +47,11 @@ function ENT:Use(ply)
 		self.canUse = true
 	end)
 
+	if self.target == ply then
+		MSCP.Message(ply, "You successfully caught the skull. It can't hurt you anymore.", Color(0,255,0))
+		self:Remove()
+	end
+
 end
 
 function ENT:scan()
@@ -42,7 +59,7 @@ function ENT:scan()
 	if self.scanValid then
 		local entList = ents.FindInSphere(self:GetPos(), self.scanRadius)
 		for k, v in pairs(entList) do
-			if v:IsPlayer() then -- alter target as needed
+			if v:IsPlayer() and v:Alive() then -- alter target as needed
 				self:scanCB(v)
 			end
 		end
@@ -56,21 +73,32 @@ function ENT:scan()
 end
 
 function ENT:scanCB(ply)
-	
+	if ply != self.user then
+		if self.target == nil then
+			self.target = ply -- found a target
+			self.scanValid = false
+		end
+	end
 end
 
--- function ENT:OnTakeDamage(dmg)
+hook.Add("ShouldCollide", "", function(scp, ent)
+	if scp:GetClass() == "mscp_skull_projectile" then
+		if ent:IsPlayer() and ent != self.user then
+			return true
+		end
+	end
+end)
 
--- end
-
-
--- hook.Add("ShouldCollide", "", function(scp, ent)
-	
--- end)
-
--- function ENT:StartTouch(otherEnt)
-
--- end
+function ENT:StartTouch(tg)
+	if tg == self.target then
+		if tg:Alive() then
+			local orig = self.user
+			if not orig:IsValid() then orig = self end
+			MSCP.Message(tg, "*smack* the head-seeking skull gotcha!")
+			tg:TakeDamage(math.random(15,30), orig, self)
+		end
+	end
+end
 
 function ENT:OnRemove()
 	timer.Simple(0, function()

@@ -36,3 +36,9 @@ MSCP.CtulhuLines = {
     '"We live on a placid island of ignorance in the midst of black seas of infinity, and it was not meant that we should voyage far."',
     '"Cthulhu still lives, too, I suppose, again in that chasm of stone which has shielded him since the sun was young."'
 }
+
+ENT.sounds = {
+    "cthulhu/whisper1.wav",
+    "cthulhu/whisper2.wav",
+    "cthulhu/whisper3.wav",
+}

@@ -67,7 +67,7 @@ function ENT:scan(ply)
 		if not self.scannedPlayers[ply] then
 			self.scannedPlayers[ply] = true
 			MSCP.Message(ply, "You feel a strange presence. You should read the book.", Color(100,30,30))
-			-- thaumcraft warp whisper sound
+			self:playRandSound(80, 20)
 		end
 	end
 end
@@ -124,3 +124,20 @@ hook.Add("PlayerDeath","ResetCthulhu", function(ply)
 		v.scannedPlayers[ply] = false
 	end
 end)
+
+function ENT:playRandSound(volume, pitchVariance)
+	local snd = table.Random(self.sounds)
+	self:EmitSound(snd, volume, math.random(100-pitchVariance, 100+pitchVariance))
+end
+
+function ENT:OnRemove()
+	timer.Simple(0, function()
+		if not IsValid(self) then
+			for k,v in pairs(MSCP.activeSCPs) do
+				if v == ent then
+					table.remove(MSCP.activeSCPs, k)
+				end
+			end
+		end
+	end)
+end

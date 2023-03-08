@@ -1,4 +1,4 @@
-1. Revolver shooting blank rounds, saying "nice" after firing
+1. Revolver shooting blank rounds, saying "nice shot" after firing
 2. MP5 that says "pew" replacing gun sounds
 3. Toilet that makes you (or any entity) laugh on touch     - sounds needed, otherwise done
 4. Nerf gun that shoots powerful rounds (might not do tho)
@@ -6,7 +6,9 @@
 6. Button that lights up when pressed and plays jazz
 7. Card that says "love u mom"    - sound and better model needed
 8. Cheese that is annoying and screams on takin dmg
-9. Computer mouse that clicks  - sound and model needed
+9. Computer mouse that clicks  - sound needed
 10. Crowbar that makes people think player is freeman (literally make them say "doctor freeman" when in range)
-11. Book of Call of Cthulhu that makes you hear whispering when alone and smack you and the nearest player if people around.
-Also make a message "you dropped the rock as it's useless."
+11. Book of Call of Cthulhu that makes you hear whispering when alone and smack you and the nearest player if people around. Also make a message "you dropped the rock as it's useless." @
+12. Gravity sphere. It rolls a value and applies it to you. if 0, you float a little, if <10, you get launched to the ceiling. if >10 you drop to the ground. if >100 or <100 you die
+13. A music box. When wound up, it plays a calm haunting tone. Those hearing it get slower and start forgetting things. If they stay in range for too long, they die. If they leave, they get a message "You start crying as you remember your past."
+14. A tree that whispers when you get close. One of the messages can be an order compelling u to do shit.

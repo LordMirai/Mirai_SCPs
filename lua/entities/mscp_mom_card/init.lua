@@ -42,6 +42,18 @@ end
 
 function ENT:OnTakeDamage(dmg)
 	if self:IsValid() then
-		self:Remove()
+		SafeRemoveEntity(self)
 	end
+end
+
+function ENT:OnRemove()
+	timer.Simple(0, function()
+		if not IsValid(self) then
+			for k,v in pairs(MSCP.activeSCPs) do
+				if v == ent then
+					table.remove(MSCP.activeSCPs, k)
+				end
+			end
+		end
+	end)
 end

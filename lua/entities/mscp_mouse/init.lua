@@ -23,3 +23,15 @@ end
 function ENT:Use(ply)
 	self:EmitSound("click.wav", 100, 1, 1)
 end
+
+function ENT:OnRemove()
+	timer.Simple(0, function()
+		if not IsValid(self) then
+			for k,v in pairs(MSCP.activeSCPs) do
+				if v == ent then
+					table.remove(MSCP.activeSCPs, k)
+				end
+			end
+		end
+	end)
+end

@@ -25,9 +25,7 @@ function ENT:Use(ply)
 	if not self.canUse then return end
 
 	if ply:IsPlayer() and ply:Alive() then
-		MSCP.Message(ply, "UHK-class you-have-been-killed scenario has occurred.")
-		MSCP.Message(ply, MSCP.TTKUJ[math.random(#MSCP.TTKUJ)])
-		ply:Kill()
+		self:smite(ply)
 	end
 
 	self.canUse = false
@@ -37,14 +35,27 @@ function ENT:Use(ply)
 end
 
 function ENT:OnTakeDamage(dmg)
-
+	local atk = dmg:GetAttacker()
+	if atk:IsPlayer() and atk:Alive() then
+		MSCP.Message(atk, "SCP-TTKU-J: 'Ouch, no you!'")
+		self:smite(atk)
+	end
 end
 
+function ENT:smite(ply)
+	MSCP.Message(ply, "UHK-class you-have-been-killed scenario has occurred.")
+	MSCP.Message(ply, MSCP.TTKUJ[math.random(#MSCP.TTKUJ)])
+	ply:Kill()
+end
 
-hook.Add("ShouldCollide", "", function(scp, ent)
-	
-end)
-
-function ENT:StartTouch(otherEnt)
-
+function ENT:OnRemove()
+	timer.Simple(0, function()
+		if not IsValid(self) then
+			for k,v in pairs(MSCP.activeSCPs) do
+				if v == ent then
+					table.remove(MSCP.activeSCPs, k)
+				end
+			end
+		end
+	end)
 end
