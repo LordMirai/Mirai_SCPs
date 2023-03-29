@@ -5,6 +5,8 @@ SWEP.Instructions = "Click to throw a head-seeking skull"
 SWEP.Spawnable = true
 SWEP.AdminOnly = true
 
+SWEP.Category = "Mirai's SCPs"
+
 SWEP.Primary.ClipSize = 1
 SWEP.Primary.DefaultClip = 1
 SWEP.Primary.Automatic = false
@@ -28,6 +30,8 @@ SWEP.ViewModel = "models/weapons/v_pistol.mdl"
 SWEP.WorldModel = "models/weapons/w_pistol.mdl"
 
 SWEP.ShootSound = Sound("Metal.SawbladeStick")
+
+MSCP = MSCP or {}
 
 function SWEP:PrimaryAttack()
    self:fireSkull()
