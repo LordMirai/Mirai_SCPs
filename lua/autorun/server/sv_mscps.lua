@@ -1,6 +1,8 @@
 MSCP = MSCP or {}
 MSCP.activeSCPs = MSCP.activeSCPs or {}
 
+local plyMeta = FindMetaTable("Player")
+
 function MSCP.Message(ply,msg,col)
     if not ply:IsValid() then return end
     if not ply:IsPlayer() then return end
@@ -28,9 +30,6 @@ function MSCP.removeAll()
         end
     end
 end
-
--- q: make a regex to find all contained within the quotes of LSL=""
--- a: (LSL=[^"]+)
 
 local entmeta = FindMetaTable("Entity")
 
@@ -66,6 +65,11 @@ end)
 
 hook.Add("Initialize", "MSCP_Initialize", function()
     MSCP.activeSCPs = {}
+end)
+
+hook.Add("PlayerInitialSpawn","InitFreeman",function(ply)
+    ply.saidFreeman = false
+    ply.isOnSpeedPill = false
 end)
 
 print("sv_mscps reloaded")
