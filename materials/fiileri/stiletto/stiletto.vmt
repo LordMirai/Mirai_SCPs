@@ -1,0 +1,17 @@
+"VertexlitGeneric"
+{
+	"$basetexture" "fiileri/stiletto/stiletto_albedo"
+	"$bumpmap" "fiileri/stiletto/stiletto_normal"
+
+
+	"$envmap" "env_cubemap"
+	"$envmaptint" "[ 0.4 0.4 0.4]"
+	"$envmapcontrast" "1"
+	"$envmapsaturation" "1"
+	"$normalmapalphaenvmapmask" "1"
+
+	"$phong" 1
+	"$phongexponent" 5
+	"$phongboost" 5
+	"$phongfresnelranges" "[0.05 0.5 1]"
+}

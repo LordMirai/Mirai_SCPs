@@ -4,7 +4,7 @@ AddCSLuaFile("shared.lua")
 include("shared.lua")
 
 function ENT:Initialize()
-	self:SetModel("models/props_phx/construct/metal_tubex2.mdl")
+	self:SetModel("models/fiileri/stiletto.mdl") -- couldn't find spindle/needle model, so i went with this
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_BBOX)
