@@ -21,7 +21,7 @@ end
 
 
 function ENT:Use(ply)
-	self:EmitSound("click.wav", 100, 1, 1)
+	self:EmitSound("click.mp3", 75, 100, 1, CHAN_AUTO)
 end
 
 function ENT:OnRemove()

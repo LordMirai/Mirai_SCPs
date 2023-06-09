@@ -50,17 +50,14 @@ function ENT:startJazz()
 	self.jazzOn = true
 	self:SetColor(Color(80,200,80,200)) -- green
 
-	self.song = CreateSound(self, "jazz/jazz1.wav")
-	self.song:Play()
+	self:EmitSound("jazz/jazz1.mp3", 75, 100, 1, CHAN_AUTO)
 end
 
 function ENT:stopJazz()
 	self.jazzOn = false
 	self:SetColor(Color(200,200,200)) -- reset
 
-	if self.song then
-		self.song:Stop()
-	end
+	self:StopSound("jazz/jazz1.mp3")
 end
 
 function ENT:OnRemove()
